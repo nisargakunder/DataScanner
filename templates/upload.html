@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .upload-btn, .choose-file-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+        .upload-btn:hover, .choose-file-btn:hover {
+            background-color: #0056b3;
+        }
+        .file-input {
+            display: none;
+        }
+        .file-info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Welcome to Scanner</div>
+
+        <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+            <div>
+                <!-- Choose file button -->
+                <label for="file" class="choose-file-btn">Choose File</label>
+                <input type="file" id="file" name="file" class="file-input" required>
+            </div>
+
+            <div class="file-info" id="file-info"></div>
+
+            <button type="submit" class="upload-btn">Upload</button>
+        </form>
+    </div>
+
+    <script>
+        // Display the name of the selected file
+        document.getElementById('file').addEventListener('change', function() {
+            const fileInfo = document.getElementById('file-info');
+            if (this.files && this.files[0]) {
+                fileInfo.textContent = `Selected file: ${this.files[0].name}`;
+            } else {
+                fileInfo.textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>
