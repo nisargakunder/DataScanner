@@ -67,8 +67,10 @@ The app will be accessible at http://127.0.0.1:5000.
 
 Usage
 Open the web app in your browser.
+
 Navigate to the Upload page.
 Choose a file (image, PDF, or text) to upload.
 The app will scan the file and display the extracted text.
 If enabled, the extracted text will be saved to the database.
+<img width="721" alt="image" src="https://github.com/user-attachments/assets/b610a8e9-20f1-4632-92ed-36b2763c2e83">
 
