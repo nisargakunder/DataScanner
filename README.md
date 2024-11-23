@@ -2,6 +2,7 @@ DataScanner - Document Scanning Web App
 A simple web application built using Flask that allows users to upload and scan documents. The app integrates with Tesseract OCR to extract text from uploaded files (images, PDFs, and text files) and uses SQLAlchemy to store the processed data in a database.
 
 Features
+
 📂 Upload and Scan Documents
 Upload files like images or PDFs for processing.
 
@@ -31,22 +32,14 @@ Ubuntu/Linux: Run sudo apt-get install tesseract-ocr.
 Setup Instructions
 1. Clone the Repository
 Clone the repository to your local machine:
-
-bash
-Copy code
 git clone https://github.com/nisargakunder/DataScanner
 cd DataScanner
 2. Install Python Dependencies
 Install the required Python packages:
-
-bash
-Copy code
 pip install -r requirements.txt
 3. Configure Tesseract Path
 If Tesseract is installed manually (e.g., on Windows), set its path in your project:
 
-python
-Copy code
 import pytesseract
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 4. Set Up the Database
@@ -77,3 +70,4 @@ data_scanner/
 ├── uploads/               # Directory for uploaded files
 ├── app.py                 # Main entry point of the application
 ├── requirements.txt       # Python dependencies
+=
