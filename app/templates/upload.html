@@ -19,41 +19,54 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 400px;
+            width: 450px;
             text-align: center;
         }
         .title {
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 28px;
+            margin-bottom: 25px;
             color: #333;
+            font-weight: bold;
         }
-        .upload-btn, .choose-file-btn {
+        .upload-btn, .choose-file-btn, .view-results-btn {
             background-color: #007bff;
             color: white;
             border: none;
-            padding: 12px 20px;
-            font-size: 16px;
+            padding: 14px 24px;
+            font-size: 18px;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 20px;
             transition: background-color 0.3s ease;
         }
-        .upload-btn:hover, .choose-file-btn:hover {
+        .upload-btn:hover, .choose-file-btn:hover, .view-results-btn:hover {
             background-color: #0056b3;
         }
         .file-input {
             display: none;
         }
         .file-info {
-            margin-top: 10px;
+            margin-top: 15px;
+            font-size: 16px;
+            color: #555;
+        }
+        .footer {
+            margin-top: 30px;
             font-size: 14px;
             color: #777;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="title">Welcome to Scanner</div>
+        <div class="title">Welcome to the Scanner App</div>
 
         <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
             <div>
@@ -66,6 +79,10 @@
 
             <button type="submit" class="upload-btn">Upload</button>
         </form>
+
+        <button class="view-results-btn" onclick="window.location.href='/view-all-results'">View All Results</button>
+
+        
     </div>
 
     <script>

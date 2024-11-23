@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Scan Results for File: {{ file_name }}</h1>
+
+        {% if results %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Card Type</th>
+                        <th>Card Number</th>
+                        <th>Info Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                        <tr>
+                            <td>{{ result.type }}</td>
+                            <td>{{ result.matches | join(', ') }}</td>
+                            <td>
+                                {% if result.type == 'Medical Record Number' %}
+                                    Protected Health Information <!-- Protected Health Information -->
+                                {% elif result.type == 'PAN Card' %}
+                                    Personally Identified Information  <!-- Personally Identifiable Information -->
+                                {% elif result.type == 'SSN' %}
+                                Personally Identified Information  <!-- Personally Identifiable Information -->
+                                {% elif result.type == 'Credit Card' %}
+                                    Payment Card Information <!-- Payment Card Information -->
+                                {% else %}
+                                    N/A  <!-- Default case for other card types -->
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No card details found in the file.</p>
+        {% endif %}
+
+        <a href="/" class="btn">Back to Upload</a>
+    </div>
+</body>
+
+</html>

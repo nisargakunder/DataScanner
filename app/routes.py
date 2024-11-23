@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, app, flash, jsonify, request, render_template
 import os
-from app.scanner import scan_file  # Import scan_file function from scanner.py
-
+from app.scanner import scan_file
+from app.models import Scan  # Import scan_file function from scanner.py
+from app import db
 # Create a blueprint for routes
 routes = Blueprint('routes', __name__)
 
@@ -32,6 +33,26 @@ def upload_file():
     # Scan the uploaded file
     try:
         results = scan_file(file_path)
-        return jsonify(results)
+        
+        # Render the results page and pass the extracted data
+        return render_template('results.html', results=results)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+ # Ensure db is initialized correctly with the app
+@routes.route('/view-all-results')
+def view_all_results():
+    # Fetch all results from the database
+    results = Scan.query.all()
+    
+    # Render the results in the view-all-results.html template
+    return render_template('view_all_results.html', results=results)
+@routes.route('/delete/<int:id>', methods=['GET'])
+def delete_result(id):
+    result = Scan.query.get(id)
+    if result:
+        db.session.delete(result)
+        db.session.commit()
+        flash('Record deleted successfully!', 'success')
+    else:
+        flash('Record not found!', 'error')
+    return render_template('view_all_results.html')

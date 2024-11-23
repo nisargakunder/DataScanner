@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Results</title>
+</head>
+<body>
+    <h1>All Scan Results</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Card Type</th>
+                <th>Card Number</th>
+                <th>File Name</th>
+                <th>Timestamp</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+                <tr>
+                    <td>{{ result.id }}</td>
+                    <td>{{ result.card_type }}</td>
+                    <td>{{ result.card_number }}</td>
+                    <td>{{ result.file_name }}</td>
+                    <td>{{ result.timestamp }}</td>
+                    <td>
+                        <!-- Delete button for each result -->
+                        <a href="/delete/{{ result.id }}">
+                            <button>Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <!-- Button to go back to the upload page -->
+    <a href="/">
+        <button>Back to Upload</button>
+    </a>
+</body>
+</html>

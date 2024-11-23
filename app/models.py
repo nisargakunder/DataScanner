@@ -1,12 +1,12 @@
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
-
+from app import db
 class Scan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    filename = db.Column(db.String(120), nullable=False)
-    sensitive_data = db.Column(db.Text, nullable=False)
-    scan_date = db.Column(db.DateTime, default=db.func.current_timestamp())
+    card_type = db.Column(db.String(100))
+    card_number = db.Column(db.String(50))
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)  # UTC timestamp
 
     def __repr__(self):
-        return f"<Scan {self.filename}>"
+        return f'<ScanResult {self.card_type} - {self.card_number}>'
