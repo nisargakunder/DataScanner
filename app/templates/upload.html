@@ -6,8 +6,8 @@
     <title>Welcome to Scanner</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
+            font-family: 'Roboto', sans-serif; /* Modern font */
+            background-color: #f4f4f9; /* Soft background color */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,32 +15,50 @@
             margin: 0;
         }
         .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 450px;
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 500px;
             text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .container:hover {
+            transform: translateY(-10px); /* Slight lift effect on hover */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         .title {
-            font-size: 28px;
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #4caf50;
+            font-weight: 700;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+        }
+        .tagline {
+            font-size: 20px;
             margin-bottom: 25px;
-            color: #333;
-            font-weight: bold;
+            color: #555;
+            font-style: italic;
+            opacity: 0.8;
         }
         .upload-btn, .choose-file-btn, .view-results-btn {
-            background-color: #007bff;
+            background-color: #4caf50;
             color: white;
             border: none;
-            padding: 14px 24px;
+            padding: 16px 30px;
             font-size: 18px;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             margin-top: 20px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .upload-btn:hover, .choose-file-btn:hover, .view-results-btn:hover {
-            background-color: #0056b3;
+            background-color: #388e3c;
+            transform: translateY(-3px);
+        }
+        .upload-btn:active, .choose-file-btn:active, .view-results-btn:active {
+            transform: translateY(2px);
         }
         .file-input {
             display: none;
@@ -48,25 +66,59 @@
         .file-info {
             margin-top: 15px;
             font-size: 16px;
-            color: #555;
+            color: #777;
         }
         .footer {
             margin-top: 30px;
             font-size: 14px;
-            color: #777;
+            color: #888;
         }
         .footer a {
-            color: #007bff;
+            color: #4caf50;
             text-decoration: none;
         }
         .footer a:hover {
             text-decoration: underline;
         }
+        /* Adding a soft gradient background for the buttons */
+        .choose-file-btn {
+            background: linear-gradient(145deg, #4caf50, #388e3c);
+        }
+        .upload-btn {
+            background: linear-gradient(145deg, #4caf50, #388e3c);
+        }
+        .view-results-btn {
+            background: linear-gradient(145deg, #4caf50, #388e3c);
+        }
+
+        /* Scanner animation */
+        .scanner-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 30px;
+            animation: scan 2s infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(15px); /* Simulating scanner movement */
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Scanner icon with animation -->
+        <img src="https://cdn-icons-png.flaticon.com/512/74/74116.png" alt="Scanner Icon" class="scanner-icon">
+        
         <div class="title">Welcome to the Scanner App</div>
+        <div class="tagline">Scan your documents and keep your data secure!</div>
 
         <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
             <div>
@@ -81,7 +133,6 @@
         </form>
 
         <button class="view-results-btn" onclick="window.location.href='/view-all-results'">View All Results</button>
-
         
     </div>
 
