@@ -37,25 +37,32 @@ Setup Instructions
 1. Clone the Repository
 Clone the repository to your local machine:
 git clone https://github.com/nisargakunder/DataScanner
+
 cd DataScanner
 
-2. Install Python Dependencies
+3. Install Python Dependencies
 Install the required Python packages:
 pip install -r requirements.txt
 
-3. Configure Tesseract Path
+4. Configure Tesseract Path
 If Tesseract is installed manually (e.g., on Windows), set its path in your project:
+
 import pytesseract
+
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-4. Set Up the Database
+6. Set Up the Database
 The database URI is defined in your app.py or configuration file. By default, it uses SQLite:
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 
-6. Run the Application
+8. Run the Application
 Start the Flask app locally:
+
 cd data_scanner
+
 python app.py
+
 The app will be accessible at http://127.0.0.1:5000.
 
 Usage
